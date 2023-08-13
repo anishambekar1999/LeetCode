@@ -39,7 +39,35 @@ public:
     bool validPartition(vector<int>& nums) {
         
         int n = nums.size();
-        bool ans = solve(n-1, nums);
-        return ans;
+        vector<bool>ans(n,false);
+
+        for(int idx=1;idx<n;idx++)
+        {
+            if((idx-1)>=0 && nums[idx] == nums[idx-1])
+            {
+                if((idx-2)>=0)
+                    ans[idx] = ans[idx-2];
+                else
+                    ans[idx] = true;
+
+                if((idx-2)>=0 && nums[idx] == nums[idx-2])
+                {
+                    if((idx-3)>=0)
+                        ans[idx] = ans[idx] || ans[idx-3];
+                    else
+                        ans[idx] = true;
+                }
+            }
+
+            if( ((idx-1)>=0 && nums[idx] == (nums[idx-1]+1)) && 
+                ((idx-2)>=0 && nums[idx-1] == (nums[idx-2]+1)) )
+            {
+                if((idx-3)>=0)
+                    ans[idx] = ans[idx] || ans[idx-3];
+                else
+                    ans[idx] = true;
+            }
+        }
+        return ans[n-1];
     }
 };
