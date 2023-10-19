@@ -29,7 +29,7 @@ public:
                 idx--;
             }
         }
-        reverse(str.begin(),str.end());
+
         return str;
     }
 
