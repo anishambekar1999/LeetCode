@@ -4,7 +4,7 @@ public:
         
         int m = dictionary.size();
         int n = sentence.size();
-        unordered_map<string ,int>MP;
+        map<string ,int>MP;
 
         for(int i=0;i<m;i++)
         {
